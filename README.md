@@ -1,0 +1,1 @@
+### Teste e ideias para melhorar infos do wow
