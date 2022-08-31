@@ -6,15 +6,21 @@
         </button>
         <div class="ml-auto" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link inative" aria-current="page" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Cadastro</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
+                @if (session()->has('nome'))
+                    <li class="nav-item">
+                        <span class="nav-link active" aria-current="page" href="#">Olá, {{ session()->get('nome') }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Sair <i class="bi bi-arrow-bar-right"></i></a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link inative" aria-current="page" href="#">Classe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Classe</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

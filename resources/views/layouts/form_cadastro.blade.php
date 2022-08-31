@@ -1,4 +1,4 @@
-<form action="cadastros" method="POST">
+<form action="postMaster" method="POST">
     @csrf
     <div class="container py-3">
         <div class="row d-flex justify-content-center align-items-center">
@@ -12,16 +12,12 @@
                         <div class="form-outline mb-4">
                             <input type="text" name="nome" class="shadow form-control form-control-lg" placeholder="Nome">
                         </div>
-
-                        <div class="form-outline mb-4">
-                            <input type="email" name="email" class="shadow form-control form-control-lg" placeholder="E-mail">
-                        </div>
             
                         <div class="form-outline mb-4">
                             <input type="password" name="senha" class="shadow form-control form-control-lg" placeholder="Senha">
                         </div>
 
-                        <button type="submit" class="col-5 btn btn-dark btn-lg btn-block shadow">Cadastrar</button>
+                        <button type="submit" class="col-5 btn btn-dark btn-lg btn-block shadow">Entrar</button>
                     </div>
                 </div>
             </div>

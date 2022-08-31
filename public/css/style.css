@@ -1,0 +1,11 @@
+.controle-card {
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.controle-card:hover {
+    background-color: white !important;
+    color: black !important;
+    transition: 0.8s;
+    background-position: left bottom;
+}

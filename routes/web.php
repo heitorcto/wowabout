@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,9 @@ use App\Http\Controllers\UsuarioController;
 |
 */
 
-Route::view('/', 'principal', ['menuAtivo' => 'principal'])->name('site.principal');
-Route::view('/cadastro', 'cadastro', ['menuAtivo' => 'cadastro'])->name('site.cadastro');
+Route::view('/', 'principal')->name('site.principal');
 
-Route::post('cadastros', [UsuarioController::class, 'getCadastro']);
+Route::view('/master', 'master', ['erro' => ''])->name('site.login');
+Route::post('postMaster', [AdminController::class, 'efetuarLogin']);
+
+Route::view('/master/principal', 'masterPrincipal')->name('master.principal');
