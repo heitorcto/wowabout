@@ -16,7 +16,14 @@ use App\Http\Controllers\AdminController;
 
 Route::view('/', 'principal')->name('site.principal');
 
-Route::view('/master', 'master', ['erro' => ''])->name('site.login');
-Route::post('postMaster', [AdminController::class, 'efetuarLogin']);
+Route::view('/master', 'masterLogin', ['erro' => ''])->name('site.login');
+Route::post('/master', [AdminController::class, 'efetuarLogin']);
 
-Route::view('/master/principal', 'masterPrincipal')->name('master.principal');
+Route::group(['middleware' => 'admin.session'], function () {
+    Route::view('/master/principal', 'masterPrincipal')->name('master.principal');
+
+    Route::view('/master/classes', 'masterClasses', ['tituloFerramenta' => 'Classes'])->name('master.classes');
+    Route::view('/master/classes/cadastrar', 'masterClassesCadastrar', ['tituloFerramenta' => 'Classes'])->name('master.classes.cadastrar');
+
+    Route::get('/master/sair', [AdminController::class, 'destruirLogin']);
+});

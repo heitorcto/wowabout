@@ -8,10 +8,10 @@
             <ul class="navbar-nav">
                 @if (session()->has('nome'))
                     <li class="nav-item">
-                        <span class="nav-link active" aria-current="page" href="#">Olá, {{ session()->get('nome') }}</span>
+                        <span class="nav-link active" aria-current="page">Olá, {{ session()->get('nome') }}</span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Sair <i class="bi bi-arrow-bar-right"></i></a>
+                        <a class="nav-link active" aria-current="page" href="/master/sair">Sair <i class="bi bi-arrow-bar-right"></i></a>
                     </li>
                 @else
                     <li class="nav-item">
