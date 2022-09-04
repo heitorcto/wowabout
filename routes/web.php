@@ -19,11 +19,13 @@ Route::view('/', 'principal')->name('site.principal');
 Route::view('/master', 'masterLogin', ['erro' => ''])->name('site.login');
 Route::post('/master', [AdminController::class, 'efetuarLogin']);
 
-Route::group(['middleware' => 'admin.session'], function () {
-    Route::view('/master/principal', 'masterPrincipal')->name('master.principal');
+Route::group(['middleware' => 'admin.session', 'prefix' => 'master'], function () {
+    Route::view('/principal', 'masterPrincipal')->name('master.principal');
 
-    Route::view('/master/classes', 'masterClasses', ['tituloFerramenta' => 'Classes'])->name('master.classes');
-    Route::view('/master/classes/cadastrar', 'masterClassesCadastrar', ['tituloFerramenta' => 'Classes'])->name('master.classes.cadastrar');
+    Route::prefix('classes')->group(function () {
+        Route::view('/', 'masterClasses', ['tituloFerramenta' => 'Classes'])->name('master.classes');
+        Route::view('/cadastrar', 'masterClassesCadastrar', ['tituloFerramenta' => 'Classes'])->name('master.classes.cadastrar');
+    });
 
-    Route::get('/master/sair', [AdminController::class, 'destruirLogin']);
+    Route::get('/sair', [AdminController::class, 'destruirLogin']);
 });

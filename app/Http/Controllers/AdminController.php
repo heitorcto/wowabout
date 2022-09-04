@@ -11,14 +11,14 @@ use App\Models\Admin;
 class AdminController extends Controller
 {
     /**
-     * Propriedade responsável por armazenar o nome do responsável.
+     * Propriedade responsável por armazenar o nome do administrador.
      *
      * @var string
      */
     protected string $nome;
 
     /**
-     * Propriedade responsável por armazenar a senha do responsável.
+     * Propriedade responsável por armazenar a senha do administrador.
      *
      * @var string
      */
