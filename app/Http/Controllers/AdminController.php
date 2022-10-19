@@ -11,32 +11,32 @@ use App\Models\Admin;
 class AdminController extends Controller
 {
     /**
-     * Propriedade responsável por armazenar o nome do administrador.
+     * Atributo responsável por armazenar o nome do administrador.
      *
      * @var string
      */
     protected string $nome;
 
     /**
-     * Propriedade responsável por armazenar a senha do administrador.
+     * Atributo responsável por armazenar a senha do administrador.
      *
      * @var string
      */
     protected string $senha;
 
     /**
-     * Propriedade responsável por atribuir a request de dados vindos do formulário 'formAdmin'.
+     * Atributo responsável por atribuir a request de dados vindos do formulário 'formAdmin'.
      *
-     * @var mixed
+     * @var Request
      */
-    protected mixed $request;
+    protected Request $request;
 
     /**
      * Método responsável por validar dados vindos do formulário 'formAdmin'.
      *
-     * @return void
+     * @return bool
      */
-    protected function validarDados()
+    protected function validarDados(): bool
     {
         if ($this->request->filled('nome') && $this->request->filled('senha')) {
             return true;
@@ -51,18 +51,18 @@ class AdminController extends Controller
      * @param Request $request
      * @return void
      */
-    protected function atribuirDados()
+    protected function atribuirDados(): void
     {
         $this->nome = $this->request->input('nome');
         $this->senha = $this->request->input('senha');
     }
 
     /**
-     * Método responsável por validar os dados na tabela 'admin'.
+     * Método responsável por validar os dados na tabela 'admins'.
      *
-     * @return boolean
+     * @return bool
      */
-    protected function validarDadosBanco()
+    protected function validarDadosBanco(): bool
     {
         if (Admin::where('nome', '=', $this->nome)->where('senha', '=', $this->senha)->exists()) {
             return true;
@@ -76,7 +76,7 @@ class AdminController extends Controller
      *
      * @return void
      */
-    protected function criarSessao()
+    protected function criarSessao(): void
     {
         session([
             'nome' => $this->nome
@@ -87,9 +87,9 @@ class AdminController extends Controller
      * Método responsável por efetuar o login do usuário e redirecioná-lo para a página principal da área de administração.
      *
      * @param Request $request
-     * @return view
+     * @return \Illuminate\Routing\Redirector|\Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
-    protected function efetuarLogin(Request $request)
+    protected function efetuarLogin(Request $request): \Illuminate\Routing\Redirector|\Illuminate\View\View|\Illuminate\Http\RedirectResponse
     {
         $this->request = $request;
 
@@ -99,19 +99,20 @@ class AdminController extends Controller
                 $this->criarSessao();
                 return redirect('/master/principal'); 
             } else {
-                return view("/master", ['erro' => 'Administrador não existe!']);
+                return view("masterLogin", ['erro' => 'Administrador não existe!']);
             }
         } else {
-            return view("/master", ['erro' => 'Preencha todos os campos corretamente!']);
+            return view("masterLogin", ['erro' => 'Preencha todos os campos corretamente!']);
         }
     }
 
     /**
      * Método responsável por destruir o login do usuário e redirecioná-lo para página principal do site.
      *
-     * @return view
+     * @return \Illuminate\Http\RedirectResponse
      */
-    protected function destruirLogin() {
+    protected function destruirLogin(): \Illuminate\Http\RedirectResponse
+    {
         session()->flush();
         return redirect('/master');
     }

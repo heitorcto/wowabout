@@ -1,4 +1,4 @@
-<form action="/master" method="POST">
+<form action="/master" method="post">
     @csrf
     <div class="container py-3">
         <div class="row d-flex justify-content-center align-items-center">

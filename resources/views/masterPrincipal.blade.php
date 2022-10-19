@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-    {{-- Cabeçalho --}}
-    @component('layouts.cabecalho')
-        
+{{-- Cabeçalho --}}
+@component('layouts.cabecalho')
+    
+@endcomponent
+
+    {{-- Menu --}}
+    @component('layouts.menu')
+
     @endcomponent
 
-    <body class="bg-dark d-flex flex-column min-vh-100">
+    {{-- Controle --}}
+    @component('layouts.controle')
 
-        {{-- Menu --}}
-        @component('layouts.menu')
+    @endcomponent
 
-        @endcomponent
+{{-- Rodapé --}}
+@component('layouts.rodape')
 
-        {{-- Controle --}}
-        @component('layouts.controle')
-
-        @endcomponent
-
-        {{-- Rodapé --}}
-        @component('layouts.rodape')
-
-        @endcomponent
-
-    </body>
-</html>
+@endcomponent

@@ -14,7 +14,7 @@
     @endcomponent
 
     {{-- Formulário --}}
-    @component('layouts.formClasse')
+    @component('layouts.formClasse', ['rota' => 'editar.classe'])
 
     @endcomponent
 
